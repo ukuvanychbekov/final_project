@@ -3,12 +3,12 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 
-from .models import User, UserProfile
+from .models import User
 from .serializer import RegisterSerilalizer
 
 
 class RegisterView(CreateAPIView):
-    queryset = UserProfile.objects.all()
+    queryset = User.objects.all()
     serializer_class = RegisterSerilalizer
 
     def create(self, request, *args, **kwargs):

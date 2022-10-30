@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 
-from .models import UserProfile
+from .models import User
 
 
 class RegisterSerilalizer(serializers.ModelSerializer):
@@ -10,7 +10,7 @@ class RegisterSerilalizer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
 
     class Meta:
-        model = UserProfile
+        model = User
         fields = ('username', 'email', 'telegram', 'password', 'password2')
 
     def validate(self, data):
@@ -19,7 +19,7 @@ class RegisterSerilalizer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        user = UserProfile(
+        user = User(
             username=validated_data['username'],
             email=validated_data['email'],
             telegram=validated_data['telegram']

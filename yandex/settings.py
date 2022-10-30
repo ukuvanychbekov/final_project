@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'post',
 ]
 
+AUTH_USER_MODEL = 'account.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
