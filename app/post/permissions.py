@@ -16,7 +16,7 @@ class BasePermission(BasePermission):
         if request.user.is_authenticated and request.user == obj.user or request.user.is_staff:
             return True
         else:
-            return False
+            return False    
 
 
 class CommentPermission(BasePermission):

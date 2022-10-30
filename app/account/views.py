@@ -8,6 +8,9 @@ from .serializer import RegisterSerilalizer
 
 
 class RegisterView(CreateAPIView):
+    """
+    Blog API endpoint to get list of blogs and create blogs
+    """
     queryset = User.objects.all()
     serializer_class = RegisterSerilalizer
 
