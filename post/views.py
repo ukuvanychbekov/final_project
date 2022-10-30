@@ -26,8 +26,12 @@ class PostListCreateView(ListCreateAPIView):
         serializer = PostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=self.request.user)
-            for i in User.objects.filter(username=self.request.user):
-                bot.send_message(i.telegram, 'Блог создан')
+            try:
+                for i in User.objects.filter(username=self.request.user):
+                    bot.send_message(i.telegram, 'Блог создан')
+            except:
+                pass
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
