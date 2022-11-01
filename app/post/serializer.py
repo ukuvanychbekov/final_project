@@ -23,5 +23,5 @@ class MarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mark
         fields = '__all__'
-        read_only_fields = ['user', ]
+        read_only_fields = ['post', 'auth'  ]
 

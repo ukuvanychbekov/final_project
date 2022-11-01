@@ -92,6 +92,20 @@ class MarkListCreateView(ListCreateAPIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication, ]
     permission_classes = [MarkPermission]
 
+    def get_queryset(self):
+        return self.queryset.filter(post_id=self.kwargs['post_id'])
+    def perform_create(self, serializer):
+        try:
+            serializer.save(
+                auth=self.request.user,
+                post=get_object_or_404(Post, id=self.kwargs['post_id'])
+            )
+        except ValueError:
+            serializer.save(
+                post=get_object_or_404(Post, id=self.kwargs['post_id'])
+            )
+
+
 
 class MarkRetrieveDestroyUpdateAPIView(RetrieveUpdateDestroyAPIView):
     """
